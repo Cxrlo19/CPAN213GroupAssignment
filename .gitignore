@@ -1,0 +1,26 @@
+# Node modules
+node_modules/
+
+# Expo build artifacts
+.expo/
+.expo-shared/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific
+*.swp
+*.swo
+
+# IDEs
+.vscode/
+.idea/
+
+# Environment files
+.env
