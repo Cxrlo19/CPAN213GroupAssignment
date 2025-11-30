@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable, Animated } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Pressable } from "react-native";
+import React, { useRef } from "react";
 
 const styles = StyleSheet.create({
   btn_txt: {
@@ -14,27 +14,57 @@ const styles = StyleSheet.create({
   },
 });
 
+const NavigationLink = (props) => {
+  const hover = useRef(new Animated.Value(0)).current;
+
+  const changeColor = (toValue) => {
+    Animated.timing(hover, {
+      toValue,
+      duration: 100,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const txtColor = hover.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["white", "#8B5CF6"],
+  });
+
+  return (
+    <Pressable
+      onPress={props.onPress}
+      // For pc
+      onHoverIn={() => changeColor(1)}
+      onHoverOut={() => changeColor(0)}
+      // For movile
+      onPressIn={() => changeColor(1)}
+      onPressOut={() => changeColor(0)}
+    >
+      <Animated.Text style={[styles.btn_txt, { color: txtColor }]}>
+        {props.Text}
+      </Animated.Text>
+    </Pressable>
+  );
+};
+
 const HomeButton = ({ navigation }) => {
   return (
-    <Pressable onPress={() => navigation.navigate("Home")}>
-      <Text style={styles.btn_txt}>Home</Text>
-    </Pressable>
+    <NavigationLink Text="Home" onPress={() => navigation.navigate("Home")} />
   );
 };
 
 const AboutButton = ({ navigation }) => {
   return (
-    <Pressable onPress={() => navigation.navigate("About")}>
-      <Text style={styles.btn_txt}>About</Text>
-    </Pressable>
+    <NavigationLink Text="About" onPress={() => navigation.navigate("About")} />
   );
 };
 
 const FavouriteButton = ({ navigation }) => {
   return (
-    <Pressable onPress={() => navigation.navigate("Favourite")}>
-      <Text style={styles.btn_txt}>Favourite</Text>
-    </Pressable>
+    <NavigationLink
+      Text="Favourite"
+      onPress={() => navigation.navigate("Favourite")}
+    />
   );
 };
 

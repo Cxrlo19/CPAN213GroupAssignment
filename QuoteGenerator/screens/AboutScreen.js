@@ -2,6 +2,7 @@ import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, Button, StyleSheet } from "react-native";
 import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
 
 const styles = StyleSheet.create({
   main: {
@@ -29,6 +30,7 @@ const AboutScreen = ({ navigation }) => {
     <View style={styles.main}>
       <Header navigation={navigation} />
       <AboutScreenComp navigation={navigation} />
+      <Footer />
     </View>
   );
 };

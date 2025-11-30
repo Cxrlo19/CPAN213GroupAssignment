@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
 
 //Waiting for the styles from Dustin
 const styles = StyleSheet.create({
@@ -74,6 +75,7 @@ const HomeScreen = ({ navigation }) => {
     <View style={styles.main}>
       <Header navigation={navigation} />
       <HomeScreenComp navigation={navigation} />
+      <Footer />
     </View>
   );
 };
