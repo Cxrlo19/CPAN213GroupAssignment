@@ -1,5 +1,4 @@
-import React from "react";
-import { View, Pressable, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import NavButtons from "../nav_buttons/Buttons";
 
 const styles = StyleSheet.create({
