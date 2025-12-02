@@ -6,12 +6,12 @@ import {
   Button,
   ActivityIndicator,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 
-//Waiting for the styles from Dustin
 const styles = StyleSheet.create({
   main: {
     flex: 1,
@@ -29,6 +29,27 @@ const styles = StyleSheet.create({
     color: "#FFF",
     marginBottom: 20,
   },
+
+  quoteButton: {
+  backgroundColor: "#1F2937",
+  paddingVertical: 14,
+  paddingHorizontal: 28,
+  borderRadius: 12,
+  marginTop: 20,
+  shadowColor: "#000",
+  shadowOpacity: 0.3,
+  shadowOffset: { width: 0, height: 3 },
+  shadowRadius: 4,
+  elevation: 5,
+},
+
+buttonText: {
+  color: "#FFFFFF",
+  fontSize: 18,
+  fontWeight: "700",
+  textAlign: "center",
+},
+
 });
 
 const HomeScreenComp = () => {
@@ -65,7 +86,11 @@ const HomeScreenComp = () => {
       ) : (
         <Text style={styles.quoteText}>{quote}</Text>
       )}
-      {/* Waiting for the button from dustin */}
+
+      <TouchableOpacity style={styles.quoteButton} onPress={fetchQuote}>
+  <Text style={styles.buttonText}>New Quote</Text>
+</TouchableOpacity>
+
     </LinearGradient>
   );
 };
