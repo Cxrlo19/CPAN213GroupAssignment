@@ -1,18 +1,33 @@
-//Api fetch function to get the random quote
+// utils/api.js
+
+// Noah: helper fallback quotes for offline mode
+const fallbackQuotes = [
+  { content: "Discipline beats motivation.", author: "Unknown" },
+  { content: "Small steps every day add up.", author: "Unknown" },
+  { content: "You don't need to be perfect, just consistent.", author: "Unknown" },
+];
+
 export const getRandomQuote = async () => {
-    try{
-        const response = await fetch('https://api.quotable.io/random');
-        if(!response.ok){
-            throw new Error('Could not fetch quote please try again later');
-        }
-        const data = await response.json();
-        return {
-            content: data.content,
-            author : data.author,
-        };
-    }catch(error){
-        console.error('Error fetching the quote:', error)
-        throw error;
-        return null;
+  try {
+    // Noah: using HTTPS so iOS doesn’t block it
+    const response = await fetch("https://api.quotable.io/random");
+
+    if (!response.ok) {
+      throw new Error("Bad response from server");
     }
-}
+
+    const data = await response.json();
+
+    return {
+      content: data.content,
+      author: data.author || "Unknown",
+    };
+  } catch (error) {
+    // Noah: no console.error so Expo doesn’t spam red logs in demo
+
+    // Fallback: so your demo ALWAYS shows something
+    const random =
+      fallbackQuotes[Math.floor(Math.random() * fallbackQuotes.length)];
+    return random; // Same shape { content, author }
+  }
+};

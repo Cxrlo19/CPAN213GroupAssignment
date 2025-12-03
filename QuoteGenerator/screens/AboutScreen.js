@@ -1,6 +1,7 @@
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { View, Text, StyleSheet } from "react-native";
+// imports and styles Noah
+import { View, Text, StyleSheet, Pressable, Alert } from "react-native";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 
@@ -43,9 +44,30 @@ const styles = StyleSheet.create({
   aboutText: {
     fontWeight: 600,
   },
+  // styles NOAH
+  infoButton: {
+    marginTop: 10,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    borderRadius: 8,
+    backgroundColor: "#007AFF",
+  },
+  infoButtonText: {
+    color: "#fff",
+    fontWeight: "600",
+    fontSize: 16,
+  },
 });
 
 const AboutScreenComp = () => {
+  //app NOAH
+  const showAppInfo = () => {
+    Alert.alert(
+      "App Info",
+      "Gen Quotes / Quote Generator\nSimple quote app for CPAN 213.\nStudent: Noah Park"
+    );
+  };
+
   return (
     <LinearGradient
       colors={["#38F8EA", "#8B5CF6", "#71589D"]}
@@ -61,6 +83,9 @@ const AboutScreenComp = () => {
             everytime the user wishes to press the button to display said quote.
           </Text>
         </View>
+        <Pressable style={styles.infoButton} onPress={showAppInfo}>
+          <Text style={styles.infoButtonText}>App Info</Text>
+        </Pressable>
       </View>
     </LinearGradient>
   );
